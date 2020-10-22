@@ -13,8 +13,13 @@ server.listen(port, () => {
 // Routing
 app.use(express.static(path.join(__dirname, 'public')));
 
+var allClients = [];
+
 // when socket connection is created
 io.on('connection', (socket) => {
+
+    allClients.push(socket);
+    console.log("Added a new connection.")
 
     // attempt to join a lobby
     socket.on('join lobby', (data) => {
@@ -30,6 +35,16 @@ io.on('connection', (socket) => {
 
     // player joined lobby
     socket.on('player join', (data) => {
+    });
+
+    socket.on('disconnect', (data) => {
+        console.log("got disconnect request ->");
+
+        var i = allClients.indexOf(socket);
+        allClients.splice(i, 1);
+        console.log("disconnected and removed client");
+
+        console.log("total users: " +  allClients.length);
     });
 
 });
