@@ -3,23 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Socket.IO Chat Example</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <ul class="pages">
-    <li class="chat page">
-      <div class="chatArea">
-        <ul class="messages"></ul>
+
+  <div class="container">
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-6">
+        <form>
+          <div class="form-group">
+            <label>What's your nickname?</label>
+            <input type="text" id="txt-name" class="form-control" placeholder="John Doe">
+          </div>
+        </form>
       </div>
-      <input class="inputMessage" placeholder="Type here..."/>
-    </li>
-    <li class="login page">
-      <div class="form">
-        <h3 class="title">What's your nickname?</h3>
-        <input class="usernameInput" type="text" maxlength="14" />
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <button type="button" id="createLobby" class="btn btn-primary mr-1">Create Lobby</button>
+        <button type="button" id="joinLobby" class="btn btn-primary">Join Lobby</button>
       </div>
-    </li>
-  </ul>
+    </div>
+
+  </div>
 
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
