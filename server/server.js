@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
     });
     
     socket.on('player chat', (data) => {
-        console.log(socket.id, data);
+        console.log(socket.id, data, 'isHost:' + socket.isHost);
     });
 
     // player left lobby
