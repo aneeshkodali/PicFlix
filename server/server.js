@@ -48,15 +48,14 @@ io.on('connection', (socket) => {
         lobbies[lobby.id] = lobby;
         
         // create the actual socket and connect to it
-        lobby_manager.joinLobby(socket, lobby);
+        lobby_manager.createLobby(socket, lobby);
 
         console.log('Created a new lobby [' + lobby.name + ']' + '[' + lobby.id +']');
 
-        io.to(lobby.id).emit('lobby created', {message: "test!"});
     });
     
     socket.on('player chat', (data) => {
-
+        console.log(socket.id, data);
     });
 
     // player left lobby
