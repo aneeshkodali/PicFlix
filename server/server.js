@@ -51,7 +51,6 @@ io.on('connection', (socket) => {
         lobby_manager.createLobby(socket, lobby);
 
         console.log('Created a new lobby [' + lobby.name + ']' + '[' + lobby.id +']');
-
     });
     
     socket.on('player chat', (data) => {
