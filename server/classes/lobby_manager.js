@@ -9,11 +9,13 @@ module.exports.createLobby = function(socket, room)
   
   // force the socket to join the 'room'
   socket.join(room.id, () => {
-    socket.roomId = room.id;
-    socket.isHost = true;
+    console.log(socket.rooms)
+    
+    // no need to broadcast; just emit it to this single socket.
+    socket.emit('lobby created', {message: 'Successfully created your lobby!', roomId: room.id});
   });
-  // no need to broadcast; just emit it to this single socket.
-  socket.emit('lobby created', {message: 'Successfully created your lobby!', roomId: room.id});
+
+  
 };
 
 module.exports.leaveLobby = function(socket, room)

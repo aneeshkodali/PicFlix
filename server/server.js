@@ -23,16 +23,17 @@ var lobbies = [];
 // when socket connection is created
 io.on('connection', (socket) => {
 
-    socket.id = uuid.v1();
     console.log('a user connected', socket.id);
 
     // attempt to join a lobby
     socket.on('join lobby', (data) => {
+        socket.join(data.roomid)
+        io.to(data.roomid).emit('player chat', {message: "it works"});
     });
 
     socket.on('test', (data) => 
     {
-        console.log(data.message);
+
     });
 
     // attempt to create a lobby
@@ -54,7 +55,8 @@ io.on('connection', (socket) => {
     });
     
     socket.on('player chat', (data) => {
-        console.log(socket.id, data, 'isHost:' + socket.isHost);
+        console.log(data.roomid)
+        io.to(data.roomid).emit("reply", {message:"hello"});
     });
 
     // player left lobby
