@@ -30,8 +30,14 @@ class CreateRoom extends Component{
     // Submit changes -> create a room
     onSubmit()
     {
-        console.log(this.state);
-        console.log(socket);
+        if (this.state.roomname !== "" && this.state.username !== "")
+        {
+            socket.emit('create lobby', {username: this.state.username, roomname: this.roomname});
+        }
+        else
+        {
+            console.log("no username or roomname.")
+        }
     }
 
     render(){
