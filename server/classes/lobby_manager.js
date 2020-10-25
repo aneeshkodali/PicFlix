@@ -12,7 +12,7 @@ module.exports.createLobby = function(socket, room)
     console.log(socket.rooms)
     
     // no need to broadcast; just emit it to this single socket.
-    socket.emit('lobby created', {message: 'Successfully created your lobby!', roomId: room.id});
+    socket.emit('lobby created', {message: 'Successfully created your lobby!', roomId: room.id, roomname: room.name});
   });
 
   
