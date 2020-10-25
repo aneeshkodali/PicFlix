@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
         console.log(data);
         const lobby = {
             id: uuid.v1(), // give this lobby a unique id
-            name: data.username + "'s lobby", // pretty name = playername + lobby
+            name: data.roomname, // pretty name = playername + lobby
             sockets: [] // init a empty socket array for other plays (and host)
         };
 
