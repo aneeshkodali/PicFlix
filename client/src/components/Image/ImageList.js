@@ -14,7 +14,7 @@ const ImageList = ({ imagesData }) => {
     });
 
     return (
-        <div clasName="ui four cards">
+        <div className="ui cards">
             {imageElems}
         </div>
     )
