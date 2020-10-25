@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { socket } from '../global/header'
+import { socket } from './Header'
 
 
 class CreateRoom extends Component{

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import './app.css';
-import { Header } from './global/header';
+import './App.css';
+import { Header } from './Header';
 import { Switch, Route} from 'react-router-dom';
 
-import CreateRoom from './main/createRoom';
-import JoinRoom from './main/joinRoom';
+import CreateRoom from './CreateRoom';
+import JoinRoom from './JoinRoom';
 
 
 class App extends Component{
