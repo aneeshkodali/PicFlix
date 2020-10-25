@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import unsplash from '../api/unsplash';
 
+import ImageList from './Image/ImageList';
+
 const Game = () => {
 
-    const [imagesData, setImagesData] = useState([])
+    // state for search term
+    const [searchTerm, setSearchTerm] = useState('');
+
+    // state for images returned
+    const [imagesData, setImagesData] = useState([]);
     useEffect(() => {
+
 
         const search = async (term) => {
             const response = await unsplash.get('/search/photos', {
@@ -12,17 +19,14 @@ const Game = () => {
             });
             setImagesData(response.data.results);
         }
-        search('campaign');
+        search('dog');
     }, []);
 
-    const imageElems = imagesData.map(img => {
-        const { alt_description, id, urls } = img;
-        return <img key={id} src={urls.thumb} alt={alt_description} />
-    })
+
 
     return (
         <div>
-            {imageElems}
+            <ImageList imagesData={imagesData} />
         </div>
     )
 
