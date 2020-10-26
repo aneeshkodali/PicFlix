@@ -43,6 +43,7 @@ class CreateRoom extends Component{
     render(){
         return(
             <div className="container">
+                <h1 className="text-center">Create a Game</h1>
                 <div className="row justify-content-center">
                     <div className="col-6">
                         <form>

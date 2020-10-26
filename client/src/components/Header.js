@@ -41,29 +41,38 @@ class Header extends Component{
     {
         return(
         <header>
-            <nav>
-                <ul className="NavClass">
-                    <li>
-                        <NavLink exact to="/">
-                            Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/create-room">
-                            Create Room
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/join-room">
-                            Join Room
-                        </NavLink>
-                    </li>
-                </ul>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-1">
+                <a class="navbar-brand">PicFlix</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <NavLink className="nav-link" exact to="/">
+                                Home
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" exact to="/create-room">
+                                Create Room
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link"exact to="/join-room">
+                                Join Room
+                            </NavLink>
+                        </li>
+                    </ul>
+
+                </div>
                 <p>{this.state.username} {this.state.isConnected} {this.state.score} {this.state.roomname}</p>
-                
+
             </nav>
-        </header>
+
+ 
+            </header>
         );
     }
 }
