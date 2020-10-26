@@ -26,23 +26,23 @@ const Game = () => {
         setImagesData(response.data.results);
     }
 
-    if (!socket.roomname)
-    {
-        return (
-            <div className="container text-center">
-                <h1>No game found!</h1>
-                <h4>
-                    Consider
-                    <Link to='/create-room'> creating </Link>
-                    or
-                    <Link to='/join-room'> joining </Link>
-                    one!
-                </h4>
-            </div>
-        )
-    }
-    else if (socket.roomname.length > 0)
-    {
+    //if (!socket.roomname)
+    //{
+    //    return (
+    //        <div className="container text-center">
+    //            <h1>No game found!</h1>
+    //            <h4>
+    //                Consider
+    //                <Link to='/create-room'> creating </Link>
+    //                or
+    //                <Link to='/join-room'> joining </Link>
+    //                one!
+    //            </h4>
+    //        </div>
+    //    )
+    //}
+    //else if (socket.roomname.length > 0)
+    //{
         return (
             <div className="container">
                 {/* Image Screen */}
@@ -89,7 +89,7 @@ const Game = () => {
 
             </div>
         )
-    }
+    //}
     
 
 

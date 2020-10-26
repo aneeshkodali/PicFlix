@@ -9,14 +9,15 @@ const SearchBar = ({ searchTerm, setSearchTerm, searchFunc }) => {
     }
 
     return (
-        <div className="ui segment">
+        <div>
             <form onSubmit={onFormSubmit} className="ui form">
                 <div className="field">
-                    <label>Image Search</label>
                     <input type="text" 
                         value={searchTerm} 
+                        placeholder="Enter Search Term..."
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
+                    <button className="ui button" onSubmit={onFormSubmit}>Search</button>
                 </div>
             </form>
         </div>
