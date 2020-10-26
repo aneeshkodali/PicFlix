@@ -7,6 +7,7 @@ import "./Header.css";
 // between routes.
 var socket;
 
+
 class Header extends Component{
     constructor(){
         super();
@@ -30,6 +31,9 @@ class Header extends Component{
             
             this.state.username = "User 01";
             this.state.roomname = data.roomId;
+
+            socket.roomname = data.roomId;
+            socket.username = "User 01";
 
 
             console.log(this.state);
