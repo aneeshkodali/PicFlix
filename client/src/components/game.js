@@ -17,6 +17,19 @@ const Game = () => {
     // state for images returned
     const [imagesData, setImagesData] = useState([]);
 
+    // state for images currently selected
+    const [imagesSelected, setImagesSelected] = useState([]);
+
+    // function to add image to list of selected images
+    const addImage = (image) => {
+        setImagesSelected([...imagesSelected, image]);
+        console.log(imagesSelected);
+    };
+
+    // function to remove image from list of selected images
+    const removeImage = (image) => {
+        setImagesSelected(imagesSelected.filter(img => img !== image));
+    }
 
     // function to search for term
     const search = async (term) => {
@@ -24,6 +37,20 @@ const Game = () => {
             params: {query: term}
         });
         setImagesData(response.data.results);
+    }
+
+    // button properties for 'adding movie to' and 'removing movie from' movies selected
+    const buttonProps = {
+        'addMovie': {
+            'buttonText': "Add",
+            'buttonClass': "mini ui positive button icon",
+            'buttonClick': addImage
+        },
+        'remove movie': {
+            'buttonText': 'Remove',
+            'buttonClass': 'mini ui negative button icon',
+            'buttonClick': removeImage
+        }
     }
 
     //if (!socket.roomname)
@@ -73,7 +100,7 @@ const Game = () => {
 
                 </div>
                 <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchFunc={search} />
-                <ImageList imagesData={imagesData} />
+                <ImageList imagesData={imagesData} buttonProps={buttonProps.addMovie} />
 
                 {/*  Chat Log/Guess Log */}
                 <div className="row content-justify-center">
