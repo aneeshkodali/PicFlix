@@ -11,6 +11,9 @@ import { Link } from 'react-router-dom';
 
 const Game = () => {
 
+    // limit to number of images selected
+    const IMAGE_LIMIT = 3;
+
     // state for search term
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -23,7 +26,6 @@ const Game = () => {
     // function to add image to list of selected images
     const addImage = (image) => {
         setImagesSelected([...imagesSelected, image]);
-        console.log(imagesSelected);
     };
 
     // function to remove image from list of selected images
@@ -43,10 +45,10 @@ const Game = () => {
     const buttonProps = {
         'addMovie': {
             'buttonText': "Add",
-            'buttonClass': "mini ui positive button icon",
+            'buttonClass': "mini ui positive icon button",
             'buttonClick': addImage
         },
-        'remove movie': {
+        'removeMovie': {
             'buttonText': 'Remove',
             'buttonClass': 'mini ui negative button icon',
             'buttonClick': removeImage
@@ -78,9 +80,10 @@ const Game = () => {
                     <div className="col-9">
                         <div className="card">
                             <div className="card-header">
-                                <h5>Current Image</h5>
+                                <h5>Current Images: {imagesSelected.length} (MAX {IMAGE_LIMIT})</h5>
                             </div>
-                            <img src="https://picsum.photos/200" className="rounded mx-auto d-block mt-1 mb-1" alt="..."></img>
+                            {/*<img src="https://picsum.photos/200" className="rounded mx-auto d-block mt-1 mb-1" alt="..."></img>*/}
+                            <ImageList imagesData={imagesSelected} buttonProps={buttonProps.removeMovie} />
                         </div>
                     </div>
 
