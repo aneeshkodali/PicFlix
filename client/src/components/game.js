@@ -5,7 +5,7 @@ import { socket } from './Header';
 
 import SearchBar from './Image/SearchBar';
 import ImageList from './Image/ImageList';
-import PlayerList from './playerList';
+import PlayerList from './PlayerList';
 
 import { Link } from 'react-router-dom';
 

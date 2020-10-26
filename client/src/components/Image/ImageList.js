@@ -1,16 +1,10 @@
 import React from 'react';
+import Image from './Image';
 
 const ImageList = ({ imagesData }) => {
 
     const imageElems = imagesData.map(img => {
-        const { alt_description, id, urls } = img;
-        return (
-                <div key={id} className="card">
-                    <div className="image">
-                        <img src={urls.thumb} alt={alt_description} />
-                    </div>
-                </div>
-        )
+        return <Image key={img.id} imageData={img} />
     });
 
     return (
