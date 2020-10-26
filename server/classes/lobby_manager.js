@@ -17,13 +17,3 @@ module.exports.createLobby = function(socket, room)
 
   
 };
-
-module.exports.leaveLobby = function(socket, room)
-{
-
-};
-
-module.exports.sendMessage = function(socket, room, message)
-{
-
-}
