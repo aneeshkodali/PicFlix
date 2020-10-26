@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import "./Header.css";
 
@@ -7,8 +7,8 @@ import "./Header.css";
 // between routes.
 var socket;
 
-
 class Header extends Component{
+
     constructor(){
         super();
         this.state = {
@@ -35,9 +35,8 @@ class Header extends Component{
             socket.roomname = data.roomId;
             socket.username = "User 01";
 
-
-            console.log(this.state);
             this.forceUpdate();
+            
         });
     }
 
@@ -72,10 +71,7 @@ class Header extends Component{
 
                 </div>
                 <p>{this.state.username} {this.state.isConnected} {this.state.score} {this.state.roomname}</p>
-
             </nav>
-
- 
             </header>
         );
     }
