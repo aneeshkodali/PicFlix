@@ -44,13 +44,13 @@ const Game = () => {
     // button properties for 'adding movie to' and 'removing movie from' movies selected
     const buttonProps = {
         'addMovie': {
-            'buttonText': "Add",
-            'buttonClass': "mini ui positive icon button",
+            'buttonText': 'Add',
+            'buttonClass': 'btn btn-success',
             'buttonClick': addImage
         },
         'removeMovie': {
             'buttonText': 'Remove',
-            'buttonClass': 'mini ui negative button icon',
+            'buttonClass': 'btn btn-danger',
             'buttonClick': removeImage
         }
     }

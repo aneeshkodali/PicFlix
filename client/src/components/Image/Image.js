@@ -7,9 +7,7 @@ const Image = ({ imageData, buttonProps }) => {
 
     return (
         <div className="card">
-            <div className="image">
-                <img src={urls.thumb} alt={alt_description} />
-            </div>
+            <img src={urls.thumb} alt={alt_description} />
             <button
                 className={buttonClass}
                 onClick={() => buttonClick(imageData)}>

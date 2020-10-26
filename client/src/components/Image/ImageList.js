@@ -12,7 +12,7 @@ const ImageList = ({ imagesData, buttonProps }) => {
     });
 
     return (
-        <div className="ui five cards">
+        <div className="card-group">
             {imageElems}
         </div>
     )
