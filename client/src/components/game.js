@@ -25,6 +25,9 @@ const Game = () => {
 
     // function to add image to list of selected images
     const addImage = (image) => {
+        if (imagesSelected.includes(image) || imagesSelected.length >= IMAGE_LIMIT) {
+            return
+        };
         setImagesSelected([...imagesSelected, image]);
     };
 

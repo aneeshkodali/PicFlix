@@ -10,14 +10,14 @@ const SearchBar = ({ searchTerm, setSearchTerm, searchFunc }) => {
 
     return (
         <div>
-            <form onSubmit={onFormSubmit} className="ui form">
-                <div className="field">
+            <form onSubmit={onFormSubmit}>
+                <div className="form-group">
                     <input type="text" 
                         value={searchTerm} 
                         placeholder="Enter Search Term..."
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <button className="ui button" onSubmit={onFormSubmit}>Search</button>
+                    <button className="btn btn-primary" type="submit">Search</button>
                 </div>
             </form>
         </div>
