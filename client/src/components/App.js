@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import './App.css';
-import { Header } from './Header';
+import { Header } from './Header/Header';
 import { Switch, Route} from 'react-router-dom';
 
-import CreateRoom from './CreateRoom';
-import JoinRoom from './JoinRoom';
+import CreateRoom from './RoomLogic/CreateRoom';
+import JoinRoom from './RoomLogic/JoinRoom';
 import Game from './game';
 
 

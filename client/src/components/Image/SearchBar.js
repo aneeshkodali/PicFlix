@@ -18,7 +18,7 @@ const SearchBar = ({ searchTerm, setSearchTerm, searchFunc }) => {
                         placeholder="Enter Search Term..."
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <button className="btn btn-primary ml-1" type="submit">Search</button>
+                    <button className="btn btn-primary ml-1" type="submit">Search Images</button>
                 </div>
             </form>
         </div>

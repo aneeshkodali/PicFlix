@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import unsplash from '../api/unsplash';
 
-import { socket } from './Header';
+import { socket } from './Header/Header';
 
 import SearchBar from './Image/SearchBar';
 import ImageList from './Image/ImageList';
@@ -107,7 +107,7 @@ const Game = () => {
 
                 </div>
                 <div className="row content-justify-center">
-                    <div className="col-5 mt-5">
+                    <div className="col-9 mt-5">
                         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchFunc={search} />
                     </div>
                 </div>
