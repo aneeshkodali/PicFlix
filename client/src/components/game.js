@@ -106,8 +106,13 @@ const Game = () => {
 
                 </div>
                 <div className="row content-justify-center">
-                    <div className="col-11 mt-5">
+                    <div className="col-5 mt-5">
                         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchFunc={search} />
+                    </div>
+                </div>
+
+                <div className="row content-justify-center">
+                    <div className="col-11 mt-5">
                         <ImageList imagesData={imagesData} buttonProps={buttonProps.addMovie} />
                     </div>
                 </div>
