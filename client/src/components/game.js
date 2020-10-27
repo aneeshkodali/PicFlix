@@ -6,6 +6,7 @@ import { socket } from './Header';
 import SearchBar from './Image/SearchBar';
 import ImageList from './Image/ImageList';
 import PlayerList from './playerList';
+import Chat from "./Chat/chat";
 
 import { Link } from 'react-router-dom';
 
@@ -121,9 +122,7 @@ const Game = () => {
                 <div className="row content-justify-center">
                     <div className="col-9 mt-5">
                         <div className="card">
-                            <div className="card-header">
-                                <h5>Chat</h5>
-                            </div>
+                            <Chat></Chat>
                         </div>
                     </div>
 
