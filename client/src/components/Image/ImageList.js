@@ -6,7 +6,7 @@ const ImageList = ({ imagesData, buttonProps }) => {
     const imageElems = imagesData.map(img => {
         return (
             <React.Fragment key={img.id}>
-                <Image imageData={img} buttonProps={buttonProps} />
+                <Image imageData={img} buttonProps={buttonProps}  />
             </React.Fragment>
         )
     });

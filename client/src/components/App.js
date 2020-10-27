@@ -5,7 +5,7 @@ import { Switch, Route} from 'react-router-dom';
 
 import CreateRoom from './CreateRoom';
 import JoinRoom from './JoinRoom';
-import Game from './Game';
+import Game from './game';
 
 
 class App extends Component{

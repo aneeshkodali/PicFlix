@@ -7,7 +7,7 @@ const Image = ({ imageData, buttonProps }) => {
 
     return (
         <div className="card">
-            <img src={urls.thumb} alt={alt_description} />
+            <img src={urls.thumb} alt={alt_description} style={{height: 128}}/>
             <button
                 className={buttonClass}
                 onClick={() => buttonClick(imageData)}>

@@ -5,7 +5,7 @@ import { socket } from './Header';
 
 import SearchBar from './Image/SearchBar';
 import ImageList from './Image/ImageList';
-import PlayerList from './PlayerList';
+import PlayerList from './playerList';
 
 import { Link } from 'react-router-dom';
 
@@ -105,8 +105,12 @@ const Game = () => {
                     </div>
 
                 </div>
-                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchFunc={search} />
-                <ImageList imagesData={imagesData} buttonProps={buttonProps.addMovie} />
+                <div className="row content-justify-center">
+                    <div className="col-11 mt-5">
+                        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchFunc={search} />
+                        <ImageList imagesData={imagesData} buttonProps={buttonProps.addMovie} />
+                    </div>
+                </div>
 
                 {/*  Chat Log/Guess Log */}
                 <div className="row content-justify-center">
