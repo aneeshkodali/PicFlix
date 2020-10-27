@@ -112,7 +112,7 @@ const Game = () => {
                 </div>
 
                 <div className="row content-justify-center">
-                    <div className="col-11 mt-5">
+                    <div className="col-12 mt-2">
                         <ImageList imagesData={imagesData} buttonProps={buttonProps.addMovie} />
                     </div>
                 </div>
