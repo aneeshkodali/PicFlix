@@ -65,7 +65,6 @@ io.on('connection', (socket) => {
     // network that image to all lobby players
     // TODO: add security: make sure socket is host, make sure requesting socket belongs to roomid
     socket.on('add image', (data) => {
-        console.log(data.roomid)
         if (data.imageData)
         {
             // broadcast the images
