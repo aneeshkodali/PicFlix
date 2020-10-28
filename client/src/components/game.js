@@ -8,7 +8,6 @@ import ImageList from './Image/ImageList';
 import PlayerList from './playerList';
 import Chat from "./Chat/chat";
 
-import { Link } from 'react-router-dom';
 
 const Game = () => {
 
