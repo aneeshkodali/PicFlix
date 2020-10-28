@@ -25,15 +25,17 @@ const Game = () => {
 
     // function to add image to list of selected images
     const addImage = (image) => {
-        if (imagesSelected.includes(image) || imagesSelected.length >= IMAGE_LIMIT) {
+        if ( imagesSelected.some(img => img.id === image.id) == true || imagesSelected.includes(image) || imagesSelected.length >= IMAGE_LIMIT) {
             return
         };
-        setImagesSelected([...imagesSelected, image]);
+        
+        // broadcast our image
+        socket.emit('add image', {imageData: image, roomid: socket.roomname});
     };
 
     // function to remove image from list of selected images
     const removeImage = (image) => {
-        setImagesSelected(imagesSelected.filter(img => img !== image));
+        socket.emit('remove image', {imageData: image, roomid: socket.roomname});
     }
 
     // function to search for term
@@ -57,6 +59,31 @@ const Game = () => {
             'buttonClick': removeImage
         }
     }
+
+    socket.on('image added', (data) => 
+    {
+        if (imagesSelected.includes(data.image) || imagesSelected[data.image.id] || imagesSelected.length >= IMAGE_LIMIT) {
+            return
+        };
+
+        setImagesSelected([...imagesSelected, data.image]);
+    });
+
+    socket.on('image removed', (data) =>
+    {
+        if (data.image && data.image.id)
+        {
+            var newImages = imagesSelected
+
+            // loop the array -> find imageid
+            var index = newImages.map(img => img.id).indexOf(data.image.id);
+            // if exists then remove image
+            ~~index && newImages.splice(index, 1);
+            
+            // update image array??
+            setImagesSelected(newImages);
+        }
+    });
 
     //if (!socket.roomname)
     //{
@@ -106,7 +133,7 @@ const Game = () => {
 
                 </div>
 
-                {socket.isHost &&
+                {/* {socket.isHost && */}
                     <div>
                         <div className="row content-justify-center">
                             <div className="col-9 mt-5">
@@ -121,7 +148,7 @@ const Game = () => {
                         </div>
 
                     </div>
-                }
+                {/* } */}
 
 
                 {/*  Chat Log/Guess Log */}
