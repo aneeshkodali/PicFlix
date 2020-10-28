@@ -8,22 +8,28 @@ class Chat extends React.Component{
 
         this.state = {
             username: '',
-            massage: '',
+            message: '',
             messages: []
         };
 
+        // sends a message to the socket server
+        // which servers the message to all connected players in the same lobby
         this.sendMessage = ev =>
         {
             console.log(socket.roomid, "socketid");
+            // prevent default
             ev.preventDefault();
             socket.emit('chat message', {
-                author: Math.random() * (1000 - 1),
+                author: socket.username,
                 message: this.state.message,
                 roomid: socket.roomname,
             });
             this.setState({message: ''})
         }
 
+        // socket-server sends back 'chat message receive'
+        // this means another player has sent a chat message, and this is their message.
+        // append it to our chat log
         socket.on("chat message receive", function(data)
         {
             addMessage(data);

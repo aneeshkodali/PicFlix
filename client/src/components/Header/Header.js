@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import "./Header.css";
 
@@ -17,29 +17,45 @@ class Header extends Component{
             score: "",
             roomname: "",
             isConnected: false,
+            playerList: [],
         };
 
+        // connect our client-side socket to server
         socket = socketIOClient(this.state.endpoint);
-        console.log(socket);
-    }
 
-    componentDidMount()
-    {
-
-        socket.on('lobby created', (data) => {
-            console.log('got message', data);
-            
-            this.state.username = "User 01";
-            this.state.roomname = data.roomId;
-
+        // socket server sends back 'lobby created'
+        // setup some protorype code
+        socket.on('lobby created', (data) => {        
+            // apply some states to the socket itself
             socket.roomname = data.roomId;
-            socket.username = "User 01";
+            socket.username = data.username; 
 
-            this.forceUpdate();
+            // apply states   
+            this.setState({'username': data.username});
+            this.setState({'roomname': data.roomId});
             
+            // update component
+            this.forceUpdate();
         });
+
+        socket.on('joined game', (data) => {
+            console.log("successfully joined a game!", data);
+
+            // apply some states to the socket itself
+            socket.roomname = data.roomId;
+            socket.username = data.username; 
+
+            // apply states   
+            this.setState({'username': data.username});
+            this.setState({'roomname': data.roomId});
+
+            // update component
+            this.forceUpdate();
+        });
+
     }
 
+ 
     render()
     {
         return(

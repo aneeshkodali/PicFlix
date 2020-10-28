@@ -27,8 +27,20 @@ io.on('connection', (socket) => {
 
     // attempt to join a lobby
     socket.on('join lobby', (data) => {
-        socket.join(data.roomid)
-        io.to(data.roomid).emit('player chat', {message: "it works"});
+        // check if roomid was passed up
+        console.log(data)
+        if (data.roomid)
+        {
+            // make sure lobby exists in memory
+            if(lobbies[data.roomid])
+            {
+                console.log('lobby exists -> joining lobby')
+                socket.join(data.roomid)
+                socket.emit('joined game', {username: data.username, roomId: data.roomid});
+                io.to(data.roomid).emit('player join', {username: data.username});
+            }
+        }
+
     });
 
     // attempt to create a lobby
@@ -44,7 +56,7 @@ io.on('connection', (socket) => {
         lobbies[lobby.id] = lobby;
         
         // create the actual socket and connect to it
-        lobby_manager.createLobby(socket, lobby);
+        lobby_manager.createLobby(socket, lobby, data.username);
 
         console.log('Created a new lobby [' + lobby.name + ']' + '[' + lobby.id +']');
     });
