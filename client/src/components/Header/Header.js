@@ -66,7 +66,7 @@ class Header extends Component{
         return(
         <header>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-1">
-                <a className="navbar-brand">PicFlix</a>
+                <a className="navbar-brand" href="#">PicFlix</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
