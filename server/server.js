@@ -31,11 +31,6 @@ io.on('connection', (socket) => {
         io.to(data.roomid).emit('player chat', {message: "it works"});
     });
 
-    socket.on('test', (data) => 
-    {
-
-    });
-
     // attempt to create a lobby
     socket.on('create lobby', (data) => {
         console.log(data);
@@ -54,9 +49,10 @@ io.on('connection', (socket) => {
         console.log('Created a new lobby [' + lobby.name + ']' + '[' + lobby.id +']');
     });
     
-    socket.on('player chat', (data) => {
-        console.log(data.roomid)
-        io.to(data.roomid).emit("reply", {message:"hello"});
+    // player chat
+    socket.on("chat message", (data) => {
+        console.log('got data', data);
+        io.to(data.roomid).emit("chat message receive", {message: data.message, author: data.author});
     });
 
     // player left lobby
