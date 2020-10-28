@@ -106,17 +106,24 @@ const Game = () => {
                     </div>
 
                 </div>
-                <div className="row content-justify-center">
-                    <div className="col-9 mt-5">
-                        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchFunc={search} />
-                    </div>
-                </div>
 
-                <div className="row content-justify-center">
-                    <div className="col-12 mt-2">
-                        <ImageList imagesData={imagesData} buttonProps={buttonProps.addMovie} />
+                {socket.isHost &&
+                    <div>
+                        <div className="row content-justify-center">
+                            <div className="col-9 mt-5">
+                                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchFunc={search} />
+                            </div>
+                        </div>
+
+                        <div className="row content-justify-center">
+                            <div className="col-12 mt-2">
+                                <ImageList imagesData={imagesData} buttonProps={buttonProps.addMovie} />
+                            </div>
+                        </div>
+
                     </div>
-                </div>
+                }
+
 
                 {/*  Chat Log/Guess Log */}
                 <div className="row content-justify-center">
