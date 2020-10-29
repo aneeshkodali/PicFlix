@@ -14,7 +14,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.4",
     "reactstrap": "^8.6.0",
-    "socketio": "^1.0.0"
+    "socketio": "^1.0.0",
+    "sweetalert2": "^10.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

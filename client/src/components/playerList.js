@@ -1,7 +1,7 @@
 import React from "react";
 import {socket} from './Header/Header';
 
-
+import Swal from 'sweetalert2';
 
 class PlayerList extends React.Component
 {
@@ -18,10 +18,12 @@ class PlayerList extends React.Component
 
         socket.on('player leaving', (data) => {
             this.removePlayer(data.socketId)
+            Swal.fire('A player has left your lobby!');
         });
 
         socket.on('player joined', (data) => {
             this.addPlayer(data.socketId, data.username);
+            Swal.fire('A new player has joined your lobby!');
         });
 
         socket.on('lobby request', (data) => {
