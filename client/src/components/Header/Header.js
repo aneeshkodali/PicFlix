@@ -6,8 +6,7 @@ import "./Header.css";
 // The Header creates links that can be used to navigate
 // between routes.
 var socket;
-
-var playerList = [];
+var playerList;
 
 class Header extends Component{
 
@@ -34,12 +33,7 @@ class Header extends Component{
             socket.roomname = data.roomId;
             socket.username = data.username; 
             socket.isHost = true;
-
-            playerList.push({socketid: socket.id, username: data.username});
-
-            console.log(playerList)
-
-
+            
             // apply states   
             this.setState({'username': data.username});
             this.setState({'roomname': data.roomId});
@@ -67,6 +61,10 @@ class Header extends Component{
 
     }
 
+    removePlayer()
+    {
+
+    }
  
     render()
     {
