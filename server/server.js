@@ -1,4 +1,5 @@
 var express = require('express');
+const { type } = require('os');
 var app = express();
 var path = require('path');
 var server = require('http').createServer(app);
@@ -35,9 +36,14 @@ io.on('connection', (socket) => {
             if(lobbies[data.roomid])
             {
                 console.log('lobby exists -> joining lobby')
-                socket.join(data.roomid)
-                socket.emit('joined game', {username: data.username, roomId: data.roomid});
-                io.to(data.roomid).emit('player join', {username: data.username});
+                socket.join(data.roomid, () => 
+                {
+                    socket.emit('joined game', {username: data.username, roomId: data.roomid});
+                    socket.roomId = data.roomid;
+                    socket.userame = data.username;
+    
+                    io.to(data.roomid).emit('player joined', {socketId: socket.id, username: data.username});
+                });
             }
         }
 
@@ -94,15 +100,32 @@ io.on('connection', (socket) => {
         io.to(data.roomid).emit("chat message receive", {message: data.message, author: data.author});
     });
 
-    // player left lobby
-    socket.on('player left', (data) => {
+    socket.on("request room info", (data) => {
+        console.log(data.roomId)
+        var roomId = data.roomId
+
+        if (roomId)
+        {
+            console.log("valid room id")
+            var sockets = lobbies[roomId].sockets
+            
+            var packedSockets = [];
+            for(x of sockets)
+            {
+                packedSockets.push({username: x.username, socketId: x.id });
+            }
+
+            socket.emit('lobby request', {sockets: packedSockets});
+        }
     });
 
-    // player joined lobby
-    socket.on('player join', (data) => {
+
+    socket.on('disconnecting', () => {
+        if (socket.roomId)
+        {
+            io.to(socket.roomId).emit('player leaving', {socketId: socket.id});
+        }
     });
 
-    socket.on('disconnect', (data) => {
-    });
 
 });
