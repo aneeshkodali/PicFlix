@@ -1,18 +1,82 @@
 import React from "react";
+import {socket, playerList} from './Header/Header';
 
-const PlayerList = ({playerList}) => {
 
-    var players = ['Player 1','Player 2', 'Player 3'];
+class PlayerList extends React.Component
+{
+    constructor(props)
+    {
+        super(props);
 
-    const listPlayers = players.map((number, index) =>    
-        <li key={index}>{number} <span className="badge badge-pill badge-primary"> 0 </span></li>  
-    );
+        this.state = {
+            players: []
+        }
 
-    return(
-        <div>
-            {listPlayers}
-        </div>
-    )
-};
+        this.addPlayer = this.addPlayer.bind(this);
+        this.removePlayer = this.removePlayer.bind(this);
+
+        socket.on('player leave', (data) => {
+            this.removePlayer(data.socketId)
+        });
+
+        socket.on('player joined', (data) => {
+            this.addPlayer(data.socketId, data.username);
+        });
+
+
+        this.state.players = playerList;
+    }
+
+    // add a player key: socketid, value: username
+    addPlayer(socketid, username)
+    {
+        var new_players = playerList;
+
+        // add player
+        new_players.push({username: username, socketid: socketid});
+        
+        
+        // set state
+        this.setState({players: new_players});
+    }
+
+    // remove a player by socketid
+    removePlayer(socketid)
+    {
+        var new_players = playerList;
+
+        if (new_players && new_players[socketid])
+        {
+            // remove player
+            delete new_players[socketid]
+            
+            playerList = new_players;
+            // set state
+            this.setState({players: new_players})
+        }
+    }
+
+
+    render()
+    {
+        
+        var x;
+        for(x of this.state.players)
+        {
+            console.log(x.username);
+        }
+
+        return(
+            <div>
+                {this.state.players.map(userObject => {
+                    return(
+                        <li key={userObject.socketid}>{userObject.username} <span className="badge badge-pill badge-primary"> 0 </span></li>  
+                    );
+                })
+                }
+            </div>
+        )
+    }
+}
 
 export default PlayerList;

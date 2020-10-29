@@ -51,7 +51,6 @@ class Game extends React.Component {
 
             var images = this.state.imagesSelected;
             var index = images.push(data.image)
-            console.log("inserted at index", index);
 
             this.setState({imagesSelected: images});
     
@@ -59,7 +58,6 @@ class Game extends React.Component {
 
         socket.on('image removed', (data) =>
         {
-            console.log('removing images')
             this.setState({imagesSelected: this.state.imagesSelected.filter(img => img.id !== data.image.id)})
         });
     }
@@ -157,7 +155,7 @@ class Game extends React.Component {
 
                     </div>
 
-                    {/* {socket.isHost && */}
+                    {socket.isHost &&
                         <div>
                             <div className="row content-justify-center">
                                 <div className="col-9 mt-5">
@@ -172,7 +170,7 @@ class Game extends React.Component {
                             </div>
 
                         </div>
-                    {/* } */}
+                    }
 
 
                     {/*  Chat Log/Guess Log */}

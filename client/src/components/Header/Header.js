@@ -7,6 +7,8 @@ import "./Header.css";
 // between routes.
 var socket;
 
+var playerList = [];
+
 class Header extends Component{
 
     constructor(){
@@ -32,6 +34,11 @@ class Header extends Component{
             socket.roomname = data.roomId;
             socket.username = data.username; 
             socket.isHost = true;
+
+            playerList.push({socketid: socket.id, username: data.username});
+
+            console.log(playerList)
+
 
             // apply states   
             this.setState({'username': data.username});
@@ -99,7 +106,7 @@ class Header extends Component{
 }
 
 
-export { Header, socket};
+export { Header, socket, playerList};
 
 
 
