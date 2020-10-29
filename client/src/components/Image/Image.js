@@ -1,4 +1,5 @@
 import React from 'react';
+import {socet, socket} from '../Header/Header';
 
 const Image = ({ imageData, buttonProps }) => {
     const { alt_description, id, urls } = imageData;
@@ -8,11 +9,13 @@ const Image = ({ imageData, buttonProps }) => {
     return (
         <div className="card">
             <img src={urls.thumb} alt={alt_description} style={{height: 128}}/>
-            <button
-                className={buttonClass}
-                onClick={() => buttonClick(imageData)}>
-                    {buttonText}
+            {socket.isHost &&
+                <button
+                    className={buttonClass}
+                    onClick={() => buttonClick(imageData)}>
+                        {buttonText}
                 </button>
+            }
         </div>
     )
 };
