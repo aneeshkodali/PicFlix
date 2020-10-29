@@ -9,6 +9,7 @@ import PlayerList from './playerList';
 import Chat from "./Chat/chat";
 
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 // limit to number of images selected
 const IMAGE_LIMIT = 3;
@@ -42,6 +43,7 @@ class Game extends React.Component {
         this.addImage = this.addImage.bind(this);
         this.removeImage = this.removeImage.bind(this);
         this.search = this.search.bind(this);
+        this.copyRoomId = this.copyRoomId.bind(this);
 
         socket.on('image added', (data) => 
         {
@@ -60,6 +62,22 @@ class Game extends React.Component {
         {
             this.setState({imagesSelected: this.state.imagesSelected.filter(img => img.id !== data.image.id)})
         });
+    }
+
+    // copies the roomid to the clipboard
+    copyRoomId()
+    {
+        var tempInput = document.createElement("input");
+        tempInput.value = socket.roomname
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        Swal.fire({
+            icon:"success",
+            title:"Copied!",
+            text: "The room ID has been copied to your clickboard"
+        })
     }
 
     // set Search Term to send out to image API
@@ -127,7 +145,7 @@ class Game extends React.Component {
             return (
                 <div className="container">
                     {/* Image Screen */}
-                    <p>Room ID: {socket.roomname}</p>
+                    <p>Room ID: {socket.roomname}  <button type="button" className="btn btn-outline-primary" onClick={this.copyRoomId}>Copy</button></p>
                     <div className="row content-justify-center">
                         <div className="col-9">
                             <div className="card">
