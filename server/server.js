@@ -60,6 +60,33 @@ io.on('connection', (socket) => {
 
         console.log('Created a new lobby [' + lobby.name + ']' + '[' + lobby.id +']');
     });
+
+    // lobby host requests image add
+    // network that image to all lobby players
+    // TODO: add security: make sure socket is host, make sure requesting socket belongs to roomid
+    socket.on('add image', (data) => {
+        if (data.imageData)
+        {
+            // broadcast the images
+            io.to(data.roomid).emit('image added', {image: data.imageData});
+            console.log('sent a new image to lobby: ' + data.roomid);
+        }
+    });
+
+    // lobby host requests image removal
+    // network image-removal to all lobby players
+    // TODO: add security: make sure socket is host, make sure requesting socket belongs to roomid
+    socket.on('remove image', (data) => {
+        console.log(data)
+        if (data.imageData)
+        {
+            if (data.roomid)
+            {
+                io.to(data.roomid).emit('image removed', {image: data.imageData});
+                console.log('removed a image from lobby ' + data.roomid)
+            }
+        }
+    });
     
     // player chat
     socket.on("chat message", (data) => {

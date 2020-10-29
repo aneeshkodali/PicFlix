@@ -17,6 +17,7 @@ class Header extends Component{
             score: "",
             roomname: "",
             isConnected: false,
+            isHost: false,
             playerList: [],
         };
 
@@ -25,21 +26,25 @@ class Header extends Component{
 
         // socket server sends back 'lobby created'
         // setup some protorype code
-        socket.on('lobby created', (data) => {        
+        socket.on('lobby created', (data) => {   
+
             // apply some states to the socket itself
             socket.roomname = data.roomId;
             socket.username = data.username; 
+            socket.isHost = true;
 
             // apply states   
             this.setState({'username': data.username});
             this.setState({'roomname': data.roomId});
+            this.setState({'isHost': true});
             
             // update component
             this.forceUpdate();
         });
 
+        // called when client sends request join and server respones with yes
+        // so, store some state date on socket/component. (only way I know how to do this) -- Jordan C
         socket.on('joined game', (data) => {
-            console.log("successfully joined a game!", data);
 
             // apply some states to the socket itself
             socket.roomname = data.roomId;
@@ -61,7 +66,7 @@ class Header extends Component{
         return(
         <header>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-1">
-                <a className="navbar-brand">PicFlix</a>
+                <a className="navbar-brand" href="#">PicFlix</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
