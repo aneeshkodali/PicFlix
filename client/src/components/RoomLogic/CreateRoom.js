@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { socket } from '../Header/Header'
 
 
+import Swal from 'sweetalert2';
+
 class CreateRoom extends Component{
     constructor(){
         super();
@@ -20,10 +22,20 @@ class CreateRoom extends Component{
         if (this.state.roomname !== "" && this.state.username !== "")
         {
             socket.emit('create lobby', {username: this.state.username, roomname: this.roomname});
+            Swal.fire({
+                icon: 'success',
+                title: "Success!",
+                text: "You have created a new game!",
+                footer: "<strong>Click Home to get started.</strong>",
+            })
         }
         else
         {
-            console.log("no username or roomname.")
+            Swal.fire({
+                icon: 'error',
+                title: "Oops!",
+                text: "You're missing your username or the room ID!"
+            })
         }
     }
 

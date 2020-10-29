@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { socket }  from '../Header/Header'
 
+import Swal from 'sweetalert2';
 
 class JoinRoom extends Component{
     constructor() {

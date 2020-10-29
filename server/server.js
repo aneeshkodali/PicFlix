@@ -29,18 +29,18 @@ io.on('connection', (socket) => {
     // attempt to join a lobby
     socket.on('join lobby', (data) => {
         // check if roomid was passed up
-        console.log(data)
         if (data.roomid)
         {
             // make sure lobby exists in memory
             if(lobbies[data.roomid])
             {
-                console.log('lobby exists -> joining lobby')
                 socket.join(data.roomid, () => 
                 {
                     socket.emit('joined game', {username: data.username, roomId: data.roomid});
                     socket.roomId = data.roomid;
-                    socket.userame = data.username;
+                    socket.username = data.username;
+
+                    lobbies[data.roomid].sockets.push(socket);
     
                     io.to(data.roomid).emit('player joined', {socketId: socket.id, username: data.username});
                 });
@@ -51,7 +51,6 @@ io.on('connection', (socket) => {
 
     // attempt to create a lobby
     socket.on('create lobby', (data) => {
-        console.log(data);
         const lobby = {
             id: uuid.v1(), // give this lobby a unique id
             name: data.roomname, // pretty name = playername + lobby
@@ -83,7 +82,6 @@ io.on('connection', (socket) => {
     // network image-removal to all lobby players
     // TODO: add security: make sure socket is host, make sure requesting socket belongs to roomid
     socket.on('remove image', (data) => {
-        console.log(data)
         if (data.imageData)
         {
             if (data.roomid)
@@ -96,12 +94,10 @@ io.on('connection', (socket) => {
     
     // player chat
     socket.on("chat message", (data) => {
-        console.log('got data', data);
         io.to(data.roomid).emit("chat message receive", {message: data.message, author: data.author});
     });
 
     socket.on("request room info", (data) => {
-        console.log(data.roomId)
         var roomId = data.roomId
 
         if (roomId)
