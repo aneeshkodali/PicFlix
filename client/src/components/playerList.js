@@ -33,7 +33,6 @@ class PlayerList extends React.Component
 
     }
 
-
     // add a player key: socketid, value: username
     addPlayer(socketid, username)
     {
