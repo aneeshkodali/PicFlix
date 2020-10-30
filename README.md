@@ -27,8 +27,11 @@ PicFlix is a browser game you can play with your friends virtually. The game is 
 ![Side by Side](./screenshots/side-by-side.png)
 - Use the chat to make guesses and signal to the room when a correct guess has been made
 - Common methods:
-    - search and add images for each word in a title. *Ex. [image for "game"] + [image for "throne"] = "game of thrones" *
-    - incorporate a little puniness during your turn. *Ex. [image for "hair"] + [image for "pot"] = "harry potter" * (bit of a stretch, I know)
+    - search and add images for each word in a title. *Ex. [image for "game"] + [image for "throne"] = "game of thrones"*
+    - incorporate a little puniness during your turn. *Ex. [image for "hair"] + [image for "pot"] = "harry potter"* (bit of a stretch, I know)
+
+## Using this Repo
+Once the repo has been downloaded and packages have been installed (for both *client* and *server*), change into the *client* directory (*cd client/*) and run *npm run full* (this will simultaneously start both servers)
 
 ## Future Work
 - add the ability to make other people a host and give them a turn (currently, only the game creator can share images)
